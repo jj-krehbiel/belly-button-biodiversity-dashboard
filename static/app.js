@@ -55,17 +55,7 @@ function buildPlot(){
 
         var dataBar = [traceBar];
 
-        var layout = {
-            title : 'Top 10 OTU samples',
-            margin: {
-                l: 75,
-                r: 100,
-                t: 60,
-                b: 60
-            }
-        };
-
-        Plotly.newPlot("bar", dataBar, layout);
+        Plotly.newPlot("bar", dataBar);
 
         // filter metadata based on selectedHuman
         filteredMeta = data.metadata.filter(entry => entry.id == selectedHuman)
@@ -82,10 +72,33 @@ function buildPlot(){
             'wfreq: ': filteredMeta[0].wfreq
         }
 
-        
+        //select the area for the metadata
+        var demoBox = d3.select("#sample-metadata");
+        // clear box to insert new data
+        demoBox.html("")
+        // append key value pairs to demoBox
+        Object.entries(metadata).forEach(([key, value])=>{
+            demoBox.append('p').text(key + value)
+        });
+
+        // create the bubble chart
+        var traceBubble = {
+            x : filteredData[0].otu_ids,
+            y : filteredData[0].sample_values,
+            text : filteredData[0].otu_labels,
+            mode : 'markers',
+            marker: {
+                color : filteredData[0].otu_ids,
+                size : filteredData[0].sample_values
+            }
+        };
+
+        var dataBubble = [traceBubble];
+
+        Plotly.newPlot('bubble', dataBubble);
 
 
-    // console.log(human);
+    // console.log(human)
     // console.log(values);
     // console.log(otu_ids);
     // console.log(otuLabels);
