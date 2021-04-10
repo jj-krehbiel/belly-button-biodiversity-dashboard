@@ -10,6 +10,8 @@ d3.json(path).then(function(data) {
     console.log(sample);
     var values = sample.sample_values.slice(0,10).reverse();
     var otu_ids = sample.otu_ids.slice(0,10).map(id => "otu " + id).reverse();
+    var otu_id_no = data.samples.map(sample => sample.otu_ids.slice(0,10));
+    var bubblex = +otu_id_no;
     var otuLabels = data.samples.map(sample => sample.otu_labels.slice(0,10));
     var ethnicity = data.metadata.map(metadata => metadata.ethnicity);
     var gender = data.metadata.map(metadata => metadata.gender);
@@ -49,6 +51,39 @@ d3.json(path).then(function(data) {
         var data = [trace1];
         
         Plotly.newPlot("bar", data);
+
+        // Display default bubble chart
+        var trace2 = {
+            x: otu_ids.sort((a,b)=>a-b),
+            y: values,
+            // mode: 'marker',
+            text: otuLabels,
+            marker:{
+                size: values,
+                color: otu_ids
+            }
+        };
+
+        var data2 = [trace2];
+
+        var layout = {
+            showlegend: false,
+            // height: 600,
+            // width: 1800
+        };
+
+        Plotly.newPlot("bubble", data2, layout);
+        console.log("bubblex: ", bubblex)
+
+        // Display default demographic data
+        
+        // function addMetadata(metadata) {
+        //     var metadata = d3.select("#sample-metadata");
+        //     metadata.text("Sup!");
+        // }
+        
+        // .append.text("Hello!");
+
     };
 
     init();
