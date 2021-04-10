@@ -67,6 +67,23 @@ function buildPlot(){
 
         Plotly.newPlot("bar", dataBar, layout);
 
+        // filter metadata based on selectedHuman
+        filteredMeta = data.metadata.filter(entry => entry.id == selectedHuman)
+        console.log(filteredMeta)
+        
+        //create metadata object
+        var metadata = {
+            'id: ': filteredMeta[0].id,
+            'ethnicity: ': filteredMeta[0].ethnicity,
+            'gender: ': filteredMeta[0].gender,
+            'age: ': filteredMeta[0].age,
+            'location: ': filteredMeta[0].location,
+            'bbtype: ': filteredMeta[0].bbtype,
+            'wfreq: ': filteredMeta[0].wfreq
+        }
+
+        
+
 
     // console.log(human);
     // console.log(values);
