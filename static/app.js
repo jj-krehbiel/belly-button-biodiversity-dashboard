@@ -11,15 +11,22 @@ d3.json(path).then(function(data) {
     var values = sample.sample_values.slice(0,10).reverse();
     var otu_ids = sample.otu_ids.slice(0,10).map(id => "otu " + id).reverse();
     var otuLabels = data.samples.map(sample => sample.otu_labels.slice(0,10));
-    var ethnicity = data.samples.map(metadata => metadata.ethnicity);
-    var gender = data.samples.map(metadata => metadata.gender);
-    var age = data.samples.map(metadata => metadata.age);
-    var location = data.samples.map(metadata => metadata.location);
-    var bbtype = data.samples.map(metadata => metadata.bbtype);
-    var wfreq = data.samples.map(metadata => metadata.wfreq);
-    console.log(human);
-    console.log(values);
-    console.log(otu_ids);
+    var ethnicity = data.metadata.map(metadata => metadata.ethnicity);
+    var gender = data.metadata.map(metadata => metadata.gender);
+    var age = data.metadata.map(metadata => metadata.age);
+    var location = data.metadata.map(metadata => metadata.location);
+    var bbtype = data.metadata.map(metadata => metadata.bbtype);
+    var wfreq = data.metadata.map(metadata => metadata.wfreq);
+    
+    // Make dropdown menu using human array
+    var dropdown = d3.select("select");
+    human.forEach(human => {
+        dropdown.append("option").text(human).property("value", human);
+    });
+
+    // console.log(human);
+    // console.log(values);
+    // console.log(otu_ids);
     console.log(otuLabels);
     console.log(ethnicity)
     console.log(gender);
@@ -27,6 +34,7 @@ d3.json(path).then(function(data) {
     console.log(location);
     console.log(bbtype);
     console.log(wfreq);
+
     // Make a function to display default bar chart
     function init() {
      
