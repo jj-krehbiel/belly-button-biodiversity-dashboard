@@ -26,16 +26,25 @@ d3.json(path).then(function(data) {
         dropdown.append("option").text(human).property("value", human);
     });
 
+    // Assign a variable to the value in the dropdown menu
+    var selectedHuman = d3.selectAll("#selDataset").node().value;
+    console.log(selectedHuman);
+
+    // filter data based on selectedHuman
+    filteredData = data.samples.filter(option => option.id == selectedHuman)
+
+    console.log(filteredData);
+
     // console.log(human);
     // console.log(values);
     // console.log(otu_ids);
-    console.log(otuLabels);
-    console.log(ethnicity)
-    console.log(gender);
-    console.log(age);
-    console.log(location);
-    console.log(bbtype);
-    console.log(wfreq);
+    // console.log(otuLabels);
+    // console.log(ethnicity)
+    // console.log(gender);
+    // console.log(age);
+    // console.log(location);
+    // console.log(bbtype);
+    // console.log(wfreq);
 
     // Make a function to display default bar chart
     function init() {
@@ -54,7 +63,7 @@ d3.json(path).then(function(data) {
 
         // Display default bubble chart
         var trace2 = {
-            x: otu_ids.sort((a,b)=>a-b),
+            x: parseInt(otu_ids),
             y: values,
             // mode: 'marker',
             text: otuLabels,
@@ -73,23 +82,33 @@ d3.json(path).then(function(data) {
         };
 
         Plotly.newPlot("bubble", data2, layout);
-        console.log("bubblex: ", bubblex)
+        // console.log("bubblex: ", bubblex)
 
-        // Display default demographic data
+    //     // Display default demographic data
         
-        // function addMetadata(metadata) {
-        //     var metadata = d3.select("#sample-metadata");
-        //     metadata.text("Sup!");
-        // }
+    //     // function addMetadata(UID) {
+    //     //     var metadata = d3.select("#sample-metadata");
+    //     //     metadata.html("");
+    //     //     d3.json("samples.json").then(data=>{
+    //     //         var demographics = data.metadata;
+    //     //         demographics = demographics.filter(row=>row.id == UID)[0]
+    //     //         console.log(demographics);
+    //     //         Object.entries(demographics).forEach(([key, value])=>{
+    //     //             metadata.append("h6").text9(`${key}: ${value}`);
+    //     //         });
+    //     //     })
+    //         // console.log(UID)
+    //     }
+    //     addMetadata();
         
-        // .append.text("Hello!");
+        
 
-    };
+    // };
 
     init();
 
-    });
+    };
 
 
-
+});
 
