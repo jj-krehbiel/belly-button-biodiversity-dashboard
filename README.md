@@ -12,7 +12,11 @@ The html page will then display three visualizations of the data associated with
 
 The first is a horizontal bar chart displaying the top ten OTU populations found in that participants belly button.
 
+![](images/bar.png)
+
 The second is a panel that displays the participants demographic metadata.
+
+![](images/bubble.png)
 
 The third is a bubble chart with the size of the bubbles relative to the population of each OTU found in that individual.
 
