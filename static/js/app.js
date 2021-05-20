@@ -10,7 +10,7 @@ function optionChanged() {
 
 // Fetch the JSON data and console log it
 function buildPlot(){
-    const path = "../../plotly-challenge/samples.json"
+    const path = "../plotly-challenge/samples.json"
     d3.json(path).then(function(data) {
         console.log(data);
         // Grab IDs of the human participants
