@@ -1,4 +1,4 @@
-# interactive-visualization-challenge
+# belly-button-biodiversity-dashboard
 
 This repository utilizes Plotly to  build an interactive dashboard to explore the Belly Button Biodiversity dataset, which catalogs the microbes that colonize human navels.
 
