@@ -10,8 +10,8 @@ function optionChanged() {
 
 // Fetch the JSON data and console log it
 function buildPlot(){
-    const path = "../data/samples.json"
-    d3.json(path).then(function(data) {
+    // const path = "../data/samples.json"
+    d3.json("samples.json").then(function(data) {
         console.log(data);
         // Grab IDs of the human participants
         var human = data.names;
